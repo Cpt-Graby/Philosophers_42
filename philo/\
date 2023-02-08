@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 11:49:32 by agonelle          #+#    #+#             */
-/*   Updated: 2023/02/08 15:15:15 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/02/08 15:07:18 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <pthread.h>
 
 void	*start_philosopher(){
+// a function to print a message
 	printf("Hello, I am a philosopher\n");
 	return (NULL);
 }
@@ -21,6 +22,7 @@ void	*start_philosopher(){
 
 int	main_philosopher(int num_arg, char **function_arg)
 {
+	//This fonction create a a thread call a function to print a message
 	pthread_t	philo1;
 
 	(void) function_arg;
