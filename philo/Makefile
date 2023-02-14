@@ -3,7 +3,7 @@ CC=		gcc
 CFLAGS=	-Wall -Werror -Wextra
 RM=		rm -f
 LIBFT=	-L../lib42 -lft
-SRCS=	main.c 
+SRCS=	srcs/main.c 
 OBJS=	$(SRCS:.c=.o)
 
 .c.o:
