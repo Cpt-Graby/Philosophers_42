@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 11:49:32 by agonelle          #+#    #+#             */
-/*   Updated: 2023/02/14 15:08:43 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/02/15 17:12:55 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,18 @@ void	*start_philosopher()
 
 int	main_philosopher(int num_arg, char **function_arg)
 {
-	time_t	timer = 0;
+	struct timeval tv;
 	pthread_t	philo1;
 
+	if (gettimeofday(&tv, NULL) != -1)
+		printf("%d\n", tv.tv_usec);
 	(void) function_arg;
 	(void) num_arg;
-	printf("%ld\n", timer);
 	pthread_create(&philo1, NULL, &start_philosopher, NULL);
 	pthread_join(philo1, NULL);
 	usleep(10);
-	printf("%ld\n", timer);
+	if (gettimeofday(&tv, NULL) != -1)
+		printf("%d\n", tv.tv_usec);
 	return (0);
 }
 
