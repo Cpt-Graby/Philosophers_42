@@ -11,7 +11,7 @@ OBJS=	$(SRCS:.c=.o)
 
 all:	${NAME}
 		make -C ../lib42
-		${CC} ${CFLAGS} ${OBJS} -o ${NAME} 
+		${CC} ${CFLAGS} ${OBJS} ${LIBFT} -o ${NAME} 
 
 ${NAME}:	${OBJS}
 
