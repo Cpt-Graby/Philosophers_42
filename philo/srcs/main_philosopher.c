@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:14:32 by agonelle          #+#    #+#             */
-/*   Updated: 2023/02/28 18:48:19 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/02 11:55:05 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static int	_init_table(int num_arg, char **ascii_arg, t_table *info)
 
 static t_fork	*_init_fork(int	number_of_fork)
 {
+
 	return (NULL);
 }
 
