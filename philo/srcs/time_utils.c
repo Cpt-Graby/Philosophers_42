@@ -6,10 +6,11 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:08:48 by agonelle          #+#    #+#             */
-/*   Updated: 2023/02/17 13:09:56 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/02/28 11:03:46 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <unistd.h>
 #include <sys/time.h>
 
 float	init_timer(struct timeval *tv)

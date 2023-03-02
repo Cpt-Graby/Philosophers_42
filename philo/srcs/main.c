@@ -6,41 +6,12 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 11:49:32 by agonelle          #+#    #+#             */
-/*   Updated: 2023/02/17 15:03:08 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/02/28 11:14:43 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../lib42/libft.h"
 #include "philosophers.h"
-
-/*
-void	*start_philosopher(void)
-{
-	printf("Hello, I am a philosopher\n");
-	return (NULL);
-}
-
-void	init_philosopher()
-{
-}
-*/
-int	main_philosopher(int num_arg, char **function_arg)
-{
-	struct timeval	tv;
-	float			timestamp;
-	//pthread_t		philo1;
-
-	(void) function_arg;
-	(void) num_arg;
-	//pthread_create(&philo1, NULL, &start_philosopher, NULL);
-	//pthread_join(philo1, NULL);
-	timestamp = init_timer(&tv);
-	if (timestamp == -1)
-		exit (-1);
-	usleep(10);
-	printf("Timeflow: +%2.f\n", get_time_diff_from_start(timestamp, &tv));
-	return (0);
-}
 
 int	argv_checker(int user_ac, char **new_argv)
 {
@@ -50,6 +21,8 @@ int	argv_checker(int user_ac, char **new_argv)
 	while (i < user_ac)
 	{
 		if (ft_ascii_is_number(new_argv[i]) == 0)
+			return (0);
+		if (ft_ascii_in_int(new_argv[i]) == 0)
 			return (0);
 		i++;
 	}
@@ -73,8 +46,8 @@ int	main(int argc, char **argv)
 			main_philosopher(user_ac, argv);
 		else
 		{
+			errno = EINVAL;
 			printf("Invalid arguments");
-			exit(-1);
 		}
 	}
 	else
