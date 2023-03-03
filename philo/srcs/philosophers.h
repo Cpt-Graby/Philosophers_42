@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:20:34 by agonelle          #+#    #+#             */
-/*   Updated: 2023/02/28 18:43:33 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/03 14:27:55 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 
 typedef struct s_philosopher
 {
-	pthread_t	philo_id;
+	pthread_t	thread_id;
 	int			alive;
+	int			last_meal;
+	int			meal_count;
 }	t_philo;
 
 typedef struct s_fork{
@@ -42,6 +44,10 @@ void	*start_philosopher(void);
 
 //main_philosopher.c
 int		main_philosopher(int num_arg, char **function_arg);
+
+//fork.c
+t_fork	*init_fork(int nomber_of_fork);
+void	destroy_fork(t_fork *pointer, int nomber_of_fork);
 
 //time_utils.c
 float	get_time_diff_from_start(float start, struct timeval *tv);
