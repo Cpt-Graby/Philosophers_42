@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/03 12:25:56 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/03 12:31:23 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:28:06 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_fork	*init_fork(int number_of_fork)
 		return (NULL);
 	while (i < number_of_fork)
 	{
-		printf("Hello there, lock %d is lock\n", i);
+		printf("Hello there, fork %d is lock\n", i);
 		status = pthread_mutex_init(&pointer[i].lock, NULL);
 		if (status)
 		{
@@ -54,7 +54,6 @@ void	destroy_fork(t_fork *pointer, int number_of_fork)
 			perror("_destroy_fork, mutex destroy");
 			exit(status);
 		}
-		free(&pointer[i]);
 		i++;
 	}
 	free(pointer);

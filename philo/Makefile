@@ -1,11 +1,14 @@
 NAME=	philo
 CC=		gcc
-CFLAGS=	-Wall -Werror -Wextra -pthread
+CFLAGS=	 -Wall -Werror -Wextra -pthread
 RM=		rm -f
 LIBFT=	-L../lib42 -lft
 SRCS=	srcs/main.c \
 		srcs/time_utils.c \
-		srcs/main_philosopher.c
+		srcs/fork.c \
+		srcs/philo_thread.c \
+		srcs/philo_routine.c \
+		srcs/main_philosopher.c 
 OBJS=	$(SRCS:.c=.o)
 
 .c.o:
@@ -13,7 +16,7 @@ OBJS=	$(SRCS:.c=.o)
 
 all:	${NAME}
 		make -C ../lib42
-		${CC} ${CFLAGS} ${OBJS} ${LIBFT} -o ${NAME} 
+		${CC} ${CFLAGS} ${OBJS} ${LIBFT} -g -fsanitize=thread -o ${NAME} 
 
 ${NAME}:	${OBJS}
 

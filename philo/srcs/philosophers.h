@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:20:34 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/03 14:27:55 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/08 17:51:39 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,13 @@
 # define PHILOSOPHERS_H	
 
 # include <pthread.h>
+# include <unistd.h>
+# include <sys/time.h>
 
 typedef struct s_philosopher
 {
 	pthread_t	thread_id;
+	int			id;
 	int			alive;
 	int			last_meal;
 	int			meal_count;
@@ -52,5 +55,11 @@ void	destroy_fork(t_fork *pointer, int nomber_of_fork);
 //time_utils.c
 float	get_time_diff_from_start(float start, struct timeval *tv);
 float	init_timer(struct timeval *tv);
+
+//philo_thread.c
+
+void	end_philo_routine(t_table *info);
+void	start_philo_routine(t_table *info);
+void	*routine(void *arg);
 
 #endif

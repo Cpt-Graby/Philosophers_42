@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   time_utils.c                                       :+:      :+:    :+:   */
+/*   philo_routine.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/17 13:08:48 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/08 17:51:24 by agonelle         ###   ########.fr       */
+/*   Created: 2023/03/08 18:07:13 by agonelle          #+#    #+#             */
+/*   Updated: 2023/03/08 18:08:01 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "philosophers.h"
 
-float	init_timer(struct timeval *tv)
+void	*routine(void *arg)
 {
-	if (gettimeofday(tv, NULL) == -1)
-		return (-1);
-	return (tv->tv_usec);
-}
+	t_philo	*philo;
 
-float	get_time_diff_from_start(float start, struct timeval *tv)
-{
-	if (gettimeofday(tv, NULL) == -1)
-		return (-1);
-	else
-		return (tv->tv_usec - start);
+	philo = (t_philo *)arg;
+	printf("Hello from philo %d", philo->id);
+	return (NULL);
 }
