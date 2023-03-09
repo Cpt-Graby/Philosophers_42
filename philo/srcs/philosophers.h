@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:20:34 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/08 17:51:39 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/09 18:56:25 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,19 +17,22 @@
 # include <unistd.h>
 # include <sys/time.h>
 
-typedef struct s_philosopher
-{
-	pthread_t	thread_id;
-	int			id;
-	int			alive;
-	int			last_meal;
-	int			meal_count;
-}	t_philo;
-
 typedef struct s_fork{
 	int				taken;
 	pthread_mutex_t	lock;
 }	t_fork;
+
+typedef struct s_philosopher
+{
+	pthread_t		thread_id;
+	int				id;
+	int				alive;
+	int				last_meal;
+	int				meal_count;
+	struct s_table	*table_info;
+	t_fork			*left_fork;
+	t_fork			*self_fork;
+}	t_philo;
 
 typedef struct s_table{
 	int		qty_philo;

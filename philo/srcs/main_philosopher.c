@@ -6,14 +6,14 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/28 11:14:32 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/08 18:12:51 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/09 19:02:54 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../lib42/libft.h"
 #include "philosophers.h"
 
-static t_philo	*init_philo(int number_of_philo)
+static t_philo	*init_philo(int number_of_philo, t_table *info)
 {
 	t_philo	*philos;
 	int		i;
@@ -25,8 +25,15 @@ static t_philo	*init_philo(int number_of_philo)
 	while (i < number_of_philo)
 	{
 		philos[i].id = i + 1;
-		philos[i].last_meal = 0;
 		philos[i].alive = 1;
+		philos[i].last_meal = 0;
+		philos[i].meal_count = 0;
+		philos[i].table_info = info;
+		philos[i].self_fork = &info->all_fork[i];
+		if (i == number_of_philo - 1)
+			philos[i].left_fork = &info->all_fork[0];
+		else
+			philos[i].left_fork = &info->all_fork[i + 1];
 		i++;
 	}
 	return (philos);
@@ -44,7 +51,7 @@ static int	_init_table(int num_arg, char **ascii_arg, t_table *info)
 	info->all_fork = init_fork(info->qty_philo);
 	if (info->all_fork == NULL)
 		exit(-1);
-	info->all_philo = init_philo(info->qty_philo);
+	info->all_philo = init_philo(info->qty_philo, info);
 	if (info->all_philo == NULL)
 		exit(-1);
 	return (0);

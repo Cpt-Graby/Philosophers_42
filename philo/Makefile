@@ -16,8 +16,11 @@ OBJS=	$(SRCS:.c=.o)
 
 all:	${NAME}
 		make -C ../lib42
-		${CC} ${CFLAGS} ${OBJS} ${LIBFT} -g -fsanitize=thread -o ${NAME} 
+		${CC} ${CFLAGS} ${OBJS} ${LIBFT} -o ${NAME} 
 
+t:	${NAME}
+		make -C ../lib42
+		${CC} ${CFLAGS} ${OBJS} ${LIBFT} -g -fsanitize=thread -o ${NAME} 
 ${NAME}:	${OBJS}
 
 clean:		
