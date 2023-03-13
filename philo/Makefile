@@ -4,11 +4,11 @@ CFLAGS=	 -Wall -Werror -Wextra -pthread
 RM=		rm -f
 LIBFT=	-L../lib42 -lft
 SRCS=	srcs/main.c \
+		srcs/init_all.c \
 		srcs/time_utils.c \
 		srcs/fork.c \
 		srcs/philo_thread.c \
-		srcs/philo_routine.c \
-		srcs/main_philosopher.c 
+		srcs/philo_routine.c 
 OBJS=	$(SRCS:.c=.o)
 
 .c.o:

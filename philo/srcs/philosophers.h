@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:20:34 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/09 18:56:25 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/13 16:20:46 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,24 @@ typedef struct s_table{
 
 //main.c
 void	*start_philosopher(void);
-
-//main_philosopher.c
 int		main_philosopher(int num_arg, char **function_arg);
+int		argv_checker(int user_ac, char **new_argv);
 
-//fork.c
-t_fork	*init_fork(int nomber_of_fork);
+//init_all.c
+t_fork	*init_fork(int number_of_fork);
+t_philo	*init_philo(int number_of_philo, t_table *info);
+int		init_table(int num_arg, char **ascii_arg, t_table *info);
+
+//destroy_all.c
 void	destroy_fork(t_fork *pointer, int nomber_of_fork);
+void	destroy_all_philo(t_table *info);
+
+//philo_routine.c
+void	start_philo_routine(t_table *info);
+void	*routine(void *arg);
 
 //time_utils.c
 float	get_time_diff_from_start(float start, struct timeval *tv);
 float	init_timer(struct timeval *tv);
-
-//philo_thread.c
-
-void	end_philo_routine(t_table *info);
-void	start_philo_routine(t_table *info);
-void	*routine(void *arg);
 
 #endif
