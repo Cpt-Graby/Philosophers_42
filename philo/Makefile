@@ -5,9 +5,10 @@ RM=		rm -f
 LIBFT=	-L../lib42 -lft
 SRCS=	srcs/main.c \
 		srcs/init_all.c \
+		srcs/destroy_all.c \
 		srcs/time_utils.c \
-		srcs/fork.c \
 		srcs/philo_thread.c \
+		srcs/one_philo.c \
 		srcs/philo_routine.c 
 OBJS=	$(SRCS:.c=.o)
 

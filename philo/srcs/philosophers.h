@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:20:34 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/13 16:20:46 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:49:00 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ typedef struct s_table{
 	int		qty_philo;
 	t_fork	*all_fork;
 	t_philo	*all_philo;
-	float	t_to_die;
-	float	t_to_eat;
-	float	t_to_sleep;
+	int		t_to_die;
+	int		t_to_eat;
+	int		t_to_sleep;
 	int		qty_meal;
 	int		death_philo;
 }	t_table;
@@ -56,8 +56,8 @@ t_philo	*init_philo(int number_of_philo, t_table *info);
 int		init_table(int num_arg, char **ascii_arg, t_table *info);
 
 //destroy_all.c
-void	destroy_fork(t_fork *pointer, int nomber_of_fork);
-void	destroy_all_philo(t_table *info);
+int		destroy_fork(t_fork *pointer, int nomber_of_fork);
+int		destroy_all_philo(t_table *info);
 
 //philo_routine.c
 void	start_philo_routine(t_table *info);
@@ -66,5 +66,8 @@ void	*routine(void *arg);
 //time_utils.c
 float	get_time_diff_from_start(float start, struct timeval *tv);
 float	init_timer(struct timeval *tv);
+
+//one_philo.c
+int		one_philosopher(int time_to_die);
 
 #endif

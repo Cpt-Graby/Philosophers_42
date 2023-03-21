@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 16:17:48 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/13 16:18:23 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/21 14:44:39 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <pthread.h>
 #include "philosophers.h"
 
-void	destroy_fork(t_fork *pointer, int number_of_fork)
+int	destroy_fork(t_fork *pointer, int number_of_fork)
 {
 	int	i;
 	int	status;
@@ -27,14 +27,15 @@ void	destroy_fork(t_fork *pointer, int number_of_fork)
 		if (status)
 		{
 			perror("_destroy_fork, mutex destroy");
-			exit(status);
+			return (status);
 		}
 		i++;
 	}
 	free(pointer);
+	return (0);
 }
 
-void	destroy_all_philo(t_table *info)
+int	destroy_all_philo(t_table *info)
 {
 	int		i;
 	int		exit_status;
@@ -48,8 +49,9 @@ void	destroy_all_philo(t_table *info)
 		if (exit_status)
 		{
 			perror("end_philo_rouotine, thread destroy");
-			exit(exit_status);
+			return (exit_status);
 		}
 		i++;
 	}
+	return (0);
 }

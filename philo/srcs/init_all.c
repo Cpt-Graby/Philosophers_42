@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:46:36 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/13 16:10:34 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/21 15:03:52 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,32 @@
 #include "../../lib42/libft.h"
 #include "philosophers.h"
 
-int	_init_table(int num_arg, char **ascii_arg, t_table *info)
+int	init_table(int num_arg, char **ascii_arg, t_table *info)
 {
 	info->qty_philo = ft_atoi(ascii_arg[0]);
 	info->t_to_die = ft_atoi(ascii_arg[1]);
 	info->t_to_eat = ft_atoi(ascii_arg[2]);
 	info->t_to_sleep = ft_atoi(ascii_arg[3]);
+	info->qty_meal = 0;
+	if (info->qty_philo <= 0 || info->t_to_die <= 0 || info->t_to_eat <= 0
+		|| info->t_to_sleep <= 0)
+	{
+		errno = EINVAL;
+		ft_putendl_fd("Input error", 2);
+		return (2);
+	}
 	if (num_arg == 5)
 		info->qty_meal = ft_atoi(ascii_arg[4]);
 	info->death_philo = 0;
-	info->all_fork = init_fork(info->qty_philo);
-	if (info->all_fork == NULL)
-		exit(-1);
-	info->all_philo = init_philo(info->qty_philo, info);
-	if (info->all_philo == NULL)
-		exit(-1);
+	if (info->qty_philo != 1)
+	{
+		info->all_fork = init_fork(info->qty_philo);
+		if (info->all_fork == NULL)
+			return (-1);
+		info->all_philo = init_philo(info->qty_philo, info);
+		if (info->all_philo == NULL)
+			return (-1);
+	}
 	return (0);
 }
 
@@ -49,8 +60,8 @@ t_fork	*init_fork(int number_of_fork)
 		status = pthread_mutex_init(&pointer[i].lock, NULL);
 		if (status)
 		{
-			perror("_init_fork, mutex creation");
-			exit(status);
+			ft_putendl_fd("_init_fork, mutex creation", 2);
+			return (NULL);
 		}
 		pointer[i].taken = 0;
 		i++;
