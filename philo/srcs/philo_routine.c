@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:07:13 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/21 16:26:11 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/22 17:04:14 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "philosophers.h"
 
-void	start_philo_routine(t_table *info)
+int	start_philo_routine(t_table *info)
 {
 	int		i;
 	int		status;
@@ -28,11 +28,12 @@ void	start_philo_routine(t_table *info)
 		if (status)
 		{
 			perror("init_philo_routine, thread create");
-			exit(status);
+			return (status);
 		}
 		usleep(5);
 		i++;
 	}
+	return (0);
 }
 
 void	*routine(void *arg)
@@ -41,9 +42,9 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	printf("Hello from philo %d\n", philo->id);
-	printf("I have to eat with the forks:\n");
-	printf("fork1: %p\n", philo->self_fork);
-	printf("fork2: %p\n", philo->left_fork);
-	pthread_mutex_lock(&philo->self_fork->lock);
+	while (1 && !philo->table_info->death_philo)
+	{
+		if (
+	}
 	return (NULL);
 }

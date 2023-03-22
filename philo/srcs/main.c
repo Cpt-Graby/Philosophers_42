@@ -6,11 +6,11 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 11:49:32 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/21 15:04:19 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/22 13:27:11 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../lib42/libft.h"
+#include <errno.h>
 #include "philosophers.h"
 
 int	main(int argc, char **argv)
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	argv++;
 	if (user_ac < 4)
 	{
-		ft_putendl_fd("Too few arguments", 2);
+		ft_putstr_fd("Too few arguments\n", 2);
 		errno = EINVAL;
 	}
 	else if (user_ac == 4 || user_ac == 5)
@@ -30,13 +30,13 @@ int	main(int argc, char **argv)
 			main_philosopher(user_ac, argv);
 		else
 		{
-			ft_putendl_fd("Invalid arguments", 2);
+			ft_putstr_fd("Invalid arguments\n", 2);
 			errno = EINVAL;
 		}
 	}
 	else
 	{
-		ft_putendl_fd("Too many arguments", 2);
+		ft_putstr_fd("Too many arguments\n", 2);
 		errno = EINVAL;
 	}
 	return (0);
@@ -52,7 +52,7 @@ int	main_philosopher(int num_arg, char **function_arg)
 	{
 		if (one_philosopher(table_info.t_to_die) == -1)
 		{
-			ft_putendl_fd("time_syscall_error", 2);
+			ft_putstr_fd("time_syscall_error\n", 2);
 			return (-1);
 		}
 		return (0);
@@ -61,20 +61,4 @@ int	main_philosopher(int num_arg, char **function_arg)
 	destroy_all_philo(&table_info);
 	destroy_fork(table_info.all_fork, table_info.qty_philo);
 	return (0);
-}
-
-int	argv_checker(int user_ac, char **new_argv)
-{
-	int	i;
-
-	i = 0;
-	while (i < user_ac)
-	{
-		if (ft_ascii_is_number(new_argv[i]) == 0)
-			return (0);
-		if (ft_ascii_in_int(new_argv[i]) == 0)
-			return (0);
-		i++;
-	}
-	return (1);
 }

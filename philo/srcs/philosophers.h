@@ -6,15 +6,18 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:20:34 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/21 14:49:00 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:42:34 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILOSOPHERS_H	
 # define PHILOSOPHERS_H	
 
+# include <stdio.h>
+# include <stdlib.h>
 # include <pthread.h>
 # include <unistd.h>
+# include <errno.h>
 # include <sys/time.h>
 
 typedef struct s_fork{
@@ -60,7 +63,7 @@ int		destroy_fork(t_fork *pointer, int nomber_of_fork);
 int		destroy_all_philo(t_table *info);
 
 //philo_routine.c
-void	start_philo_routine(t_table *info);
+int		start_philo_routine(t_table *info);
 void	*routine(void *arg);
 
 //time_utils.c
@@ -69,5 +72,16 @@ float	init_timer(struct timeval *tv);
 
 //one_philo.c
 int		one_philosopher(int time_to_die);
+
+//utils.c
+int		ft_strlen(char *s);
+void	ft_putstr_fd(char *s, int fd);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_atoi(const char *str);
+
+//check_arg.c
+int		ft_ascii_in_int(char *num_string);
+int		ft_ascii_is_number(char *str);
+int		argv_checker(int user_ac, char **new_argv);
 
 #endif

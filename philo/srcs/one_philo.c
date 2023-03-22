@@ -6,11 +6,10 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:29:57 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/21 15:24:27 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/22 15:20:46 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../lib42/libft.h"
 #include "philosophers.h"
 
 int	one_philosopher(int time_to_die)
