@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:07:13 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/22 17:04:14 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:10:16 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ void	*routine(void *arg)
 
 	philo = (t_philo *)arg;
 	printf("Hello from philo %d\n", philo->id);
-	while (1 && !philo->table_info->death_philo)
+	while (1 && philo->table_info->death_philo)
 	{
-		if (
 	}
 	return (NULL);
 }

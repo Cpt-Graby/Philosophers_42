@@ -6,23 +6,17 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:08:48 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/08 17:51:24 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:19:51 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-float	init_timer(struct timeval *tv)
+long int	get_time(void)
 {
-	if (gettimeofday(tv, NULL) == -1)
-		return (-1);
-	return (tv->tv_usec);
-}
+	struct timeval	tv;
 
-float	get_time_diff_from_start(float start, struct timeval *tv)
-{
-	if (gettimeofday(tv, NULL) == -1)
+	if (gettimeofday(&tv, NULL) == -1)
 		return (-1);
-	else
-		return (tv->tv_usec - start);
+	return (tv.tv_usec);
 }

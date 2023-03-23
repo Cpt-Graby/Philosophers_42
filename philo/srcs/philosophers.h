@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:20:34 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/22 15:42:34 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:19:54 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,50 +38,51 @@ typedef struct s_philosopher
 }	t_philo;
 
 typedef struct s_table{
-	int		qty_philo;
-	t_fork	*all_fork;
-	t_philo	*all_philo;
-	int		t_to_die;
-	int		t_to_eat;
-	int		t_to_sleep;
-	int		qty_meal;
-	int		death_philo;
+	int			qty_philo;
+	t_fork		*all_fork;
+	t_philo		*all_philo;
+	int			t_to_die;
+	int			t_to_eat;
+	int			t_to_sleep;
+	int			qty_meal;
+	int			death_philo;
+	long int	time_start;
 }	t_table;
 
 //main.c
-void	*start_philosopher(void);
-int		main_philosopher(int num_arg, char **function_arg);
-int		argv_checker(int user_ac, char **new_argv);
+void		*start_philosopher(void);
+int			main_philosopher(int num_arg, char **function_arg);
+int			argv_checker(int user_ac, char **new_argv);
 
 //init_all.c
-t_fork	*init_fork(int number_of_fork);
-t_philo	*init_philo(int number_of_philo, t_table *info);
-int		init_table(int num_arg, char **ascii_arg, t_table *info);
+int			init_all_struct(int num_arg, char **ascii_arg, t_table *info);
+int			init_table(int num_arg, char **ascii_arg, t_table *info);
+t_fork		*init_fork(int number_of_fork);
+t_philo		*init_philo(int number_of_philo, t_table *info);
 
 //destroy_all.c
-int		destroy_fork(t_fork *pointer, int nomber_of_fork);
-int		destroy_all_philo(t_table *info);
+int			destroy_fork(t_fork *pointer, int nomber_of_fork);
+int			destroy_all_philo(t_table *info);
 
 //philo_routine.c
-int		start_philo_routine(t_table *info);
-void	*routine(void *arg);
+int			start_philo_routine(t_table *info);
+void		*routine(void *arg);
 
 //time_utils.c
-float	get_time_diff_from_start(float start, struct timeval *tv);
-float	init_timer(struct timeval *tv);
+long int	get_time(void);
 
 //one_philo.c
-int		one_philosopher(int time_to_die);
+int			one_philosopher(int time_to_die);
 
 //utils.c
-int		ft_strlen(char *s);
-void	ft_putstr_fd(char *s, int fd);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-int		ft_atoi(const char *str);
+int			ft_strlen(char *s);
+void		ft_putstr_fd(char *s, int fd);
+int			ft_strncmp(const char *s1, const char *s2, size_t n);
+int			ft_atoi(const char *str);
 
 //check_arg.c
-int		ft_ascii_in_int(char *num_string);
-int		ft_ascii_is_number(char *str);
-int		argv_checker(int user_ac, char **new_argv);
+int			ft_ascii_in_int(char *num_string);
+int			ft_ascii_is_number(char *str);
+int			argv_checker(int user_ac, char **new_argv);
 
 #endif

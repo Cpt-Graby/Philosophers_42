@@ -6,11 +6,36 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:46:36 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/22 15:43:40 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/23 15:18:04 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
+
+int	init_all_struct(int num_arg, char **ascii_arg, t_table *info)
+{
+	int	status;
+
+	status = init_table(num_arg, ascii_arg, info);
+	if (status)
+	{
+		if (status == 2)
+		{
+			errno = EINVAL;
+			ft_putstr_fd("Input error", 2);
+		}
+		return (status);
+	}
+	if (info->qty_philo == 1)
+		return (0);
+	info->all_fork = init_fork(info->qty_philo);
+	if (info->all_fork == NULL)
+		return (10);
+	info->all_philo = init_philo(info->qty_philo, info);
+	if (info->all_philo == NULL)
+		return (11);
+	return (0);
+}
 
 int	init_table(int num_arg, char **ascii_arg, t_table *info)
 {
@@ -22,22 +47,16 @@ int	init_table(int num_arg, char **ascii_arg, t_table *info)
 	info->death_philo = 0;
 	if (info->qty_philo <= 0 || info->t_to_die <= 0 || info->t_to_eat <= 0
 		|| info->t_to_sleep <= 0)
-	{
-		errno = EINVAL;
-		ft_putstr_fd("Input error", 2);
 		return (2);
-	}
 	if (num_arg == 5)
-		info->qty_meal = ft_atoi(ascii_arg[4]);
-	if (info->qty_philo != 1)
 	{
-		info->all_fork = init_fork(info->qty_philo);
-		if (info->all_fork == NULL)
-			return (-1);
-		info->all_philo = init_philo(info->qty_philo, info);
-		if (info->all_philo == NULL)
-			return (-1);
+		info->qty_meal = ft_atoi(ascii_arg[4]);
+		if (info->qty_meal <= 0)
+			return (2);
 	}
+	info->time_start = get_time();
+	if (info->time_start == -1)
+		return (3);
 	return (0);
 }
 

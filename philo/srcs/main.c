@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 11:49:32 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/22 13:27:11 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/23 13:44:01 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,12 @@ int	main(int argc, char **argv)
 
 int	main_philosopher(int num_arg, char **function_arg)
 {
-	t_table			table_info;
+	t_table	table_info;
+	int		status;
 
-	if (init_table(num_arg, function_arg, &table_info))
-		return (2);
+	status = init_all_struct(num_arg, function_arg, &table_info);
+	if (status)
+		return (status);
 	if (table_info.qty_philo == 1)
 	{
 		if (one_philosopher(table_info.t_to_die) == -1)
