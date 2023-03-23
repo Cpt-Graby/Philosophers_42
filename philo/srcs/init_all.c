@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:46:36 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/23 15:18:04 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/23 19:53:23 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ t_philo	*init_philo(int number_of_philo, t_table *info)
 	{
 		philos[i].id = i + 1;
 		philos[i].alive = 1;
-		philos[i].last_meal = 0;
+		philos[i].t_last_meal = 0;
 		philos[i].meal_count = 0;
 		philos[i].table_info = info;
 		philos[i].self_fork = &info->all_fork[i];

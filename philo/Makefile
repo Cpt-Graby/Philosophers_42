@@ -4,6 +4,7 @@ CFLAGS=	 -Wall -Werror -Wextra -pthread
 RM=		rm -f
 SRCS=	srcs/main.c \
 		srcs/utils.c \
+		srcs/print_stamp.c \
 		srcs/check_arg.c \
 		srcs/init_all.c \
 		srcs/destroy_all.c \
@@ -23,7 +24,6 @@ ${NAME}:	${OBJS}
 
 clean:		
 		${RM} ${OBJS}
-		${RM} ${OBJSB}
 
 fclean:		clean
 		${RM} ${NAME}

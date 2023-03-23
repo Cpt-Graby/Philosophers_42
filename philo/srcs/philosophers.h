@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:20:34 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/23 15:19:54 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/23 20:01:00 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_philosopher
 	pthread_t		thread_id;
 	int				id;
 	int				alive;
-	int				last_meal;
+	long int		t_last_meal;
 	int				meal_count;
 	struct s_table	*table_info;
 	t_fork			*left_fork;
@@ -84,5 +84,8 @@ int			ft_atoi(const char *str);
 int			ft_ascii_in_int(char *num_string);
 int			ft_ascii_is_number(char *str);
 int			argv_checker(int user_ac, char **new_argv);
+
+//print_stamp.c
+void		print_stamp(long int time, char *msg_action, int num);
 
 #endif
