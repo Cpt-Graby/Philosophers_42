@@ -4,6 +4,7 @@ CFLAGS=	 -Wall -Werror -Wextra -pthread
 RM=		rm -f
 SRCS=	srcs/main.c \
 		srcs/utils.c \
+		srcs/ft_ltoa.c \
 		srcs/print_stamp.c \
 		srcs/check_arg.c \
 		srcs/init_all.c \

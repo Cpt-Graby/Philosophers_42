@@ -6,7 +6,7 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 15:20:34 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/23 20:01:00 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/24 11:59:13 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ int			ft_atoi(const char *str);
 int			ft_ascii_in_int(char *num_string);
 int			ft_ascii_is_number(char *str);
 int			argv_checker(int user_ac, char **new_argv);
+
+//ft_ltoa.c
+char		*ft_ltoa(long int n);
 
 //print_stamp.c
 void		print_stamp(long int time, char *msg_action, int num);
