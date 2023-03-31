@@ -6,13 +6,25 @@
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:23:19 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/22 13:27:09 by agonelle         ###   ########.fr       */
+/*   Updated: 2023/03/31 12:01:07 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers.h"
 
-int	ft_ascii_in_int(char *num_string)
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	if (s == NULL)
+		return (i);
+	while (s[i])
+		i++;
+	return (i);
+}
+
+static int	ft_ascii_in_int(char *num_string)
 {
 	int	len;
 
@@ -39,7 +51,7 @@ int	ft_ascii_in_int(char *num_string)
 		return (1);
 }
 
-int	ft_ascii_is_number(char *str)
+static int	ft_ascii_is_number(char *str)
 {
 	int	i;
 
@@ -55,6 +67,27 @@ int	ft_ascii_is_number(char *str)
 	return (1);
 }
 
+int	put_argv_in_tab(int user_ac, char **new_argv, int *arg_tab)
+{
+	int	i;
+
+	i = 0;
+	arg_tab[4] = -1;
+	while (i < user_ac)
+	{
+		arg_tab[i] = ft_atoi(new_argv[i]);
+		i++;
+	}
+	i = 0;
+	while (i < 4)
+	{
+		if (arg_tab[i] <= 0)
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	argv_checker(int user_ac, char **new_argv)
 {
 	int	i;
@@ -62,9 +95,7 @@ int	argv_checker(int user_ac, char **new_argv)
 	i = 0;
 	while (i < user_ac)
 	{
-		if (ft_ascii_is_number(new_argv[i]) == 0)
-			return (0);
-		if (ft_ascii_in_int(new_argv[i]) == 0)
+		if (!ft_ascii_is_number(new_argv[i]) || !ft_ascii_in_int(new_argv[i]))
 			return (0);
 		i++;
 	}

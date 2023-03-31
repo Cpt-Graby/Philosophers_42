@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: agonelle <agonelle@student.42lausanne.ch>  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/06 11:49:32 by agonelle          #+#    #+#             */
-/*   Updated: 2023/03/23 13:44:01 by agonelle         ###   ########.fr       */
+/*   Created: 2023/03/28 09:58:45 by agonelle          #+#    #+#             */
+/*   Updated: 2023/03/31 15:10:50 by agonelle         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,17 @@
 
 int	main(int argc, char **argv)
 {
-	int		user_ac;
+	t_info	info_table;
 
-	user_ac = argc - 1;
+	argc -= 1;
 	argv++;
-	if (user_ac < 4)
+	if (argc < 4)
 	{
 		ft_putstr_fd("Too few arguments\n", 2);
 		errno = EINVAL;
 	}
-	else if (user_ac == 4 || user_ac == 5)
-	{
-		if (argv_checker(user_ac, argv))
-			main_philosopher(user_ac, argv);
-		else
-		{
-			ft_putstr_fd("Invalid arguments\n", 2);
-			errno = EINVAL;
-		}
-	}
+	else if (argc == 4 || argc == 5)
+		main_philosopher(argc, argv, &info_table);
 	else
 	{
 		ft_putstr_fd("Too many arguments\n", 2);
@@ -42,25 +34,27 @@ int	main(int argc, char **argv)
 	return (0);
 }
 
-int	main_philosopher(int num_arg, char **function_arg)
+int	main_philosopher(int argc, char **argv, t_info *info_table)
 {
-	t_table	table_info;
-	int		status;
+	int	status;
 
-	status = init_all_struct(num_arg, function_arg, &table_info);
+	if (!argv_checker(argc, argv)
+		|| !put_argv_in_tab(argc, argv, info_table->time_to))
+	{
+		ft_putstr_fd("Invalid arguments\n", 2);
+		errno = EINVAL;
+	}
+	if (info_table->time_to[QTY_PHILO] == 1)
+	{
+		status = one_philosopher(info_table->time_to[TIME_TO_DIE]);
+		return (status);
+	}
+	if (init_all_struct(info_table))
+		return (errno);
+	start_philo_routine(info_table);
+	check_end(info_table);
+	status = destroy_all(info_table);
 	if (status)
 		return (status);
-	if (table_info.qty_philo == 1)
-	{
-		if (one_philosopher(table_info.t_to_die) == -1)
-		{
-			ft_putstr_fd("time_syscall_error\n", 2);
-			return (-1);
-		}
-		return (0);
-	}
-	start_philo_routine(&table_info);
-	destroy_all_philo(&table_info);
-	destroy_fork(table_info.all_fork, table_info.qty_philo);
 	return (0);
 }
